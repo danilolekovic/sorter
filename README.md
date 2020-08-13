@@ -1,7 +1,6 @@
-<div align="center" style="font-family: serif;">
+<div align="center">
 <h1>Sorter</h1>
 <p>a visual display of various sorting algorithms in JS</p>
-<hr />
 </div>
 
 ### Sorting Algorithms
