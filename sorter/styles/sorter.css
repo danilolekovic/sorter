@@ -1,0 +1,35 @@
+#array-holder {
+    margin: auto;
+    padding-top: 7vh;
+    width: 23em;
+}
+
+#array {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    display: grid;
+    width: 17em;
+    grid-gap: 1em;
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.array-item {
+    text-align: center;
+    padding: 1em;
+    border: 1px solid #ddd;
+}
+
+#next, #sorters, #sorters a {
+    display: inline-block;
+}
+
+#next, #randomize {
+    color: #000;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+#algos {
+    display: none;
+}
