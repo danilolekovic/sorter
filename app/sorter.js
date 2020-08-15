@@ -10,6 +10,8 @@ sorters.forEach(function(i) {
 
 $("#" + sorters[sortersIndex]).show();
 
+var startTime, interval;
+
 $("#next").on("click", function() {
     $("#" + sorters[sortersIndex]).hide();
     sortersIndex++;
@@ -19,38 +21,61 @@ $("#next").on("click", function() {
     }
 
     $("#" + sorters[sortersIndex]).show();
+
+    $("#timer").html("&#128337;");
 });
 
 $("#sleep-sort").on("click", function () {
   var arrayCopy = [...originalArray];
   var outputArray = [];
 
-  arrayCopy.forEach(function (i) {
-    setTimeout(function () {
-        outputArray.push(i);
-        drawArray(outputArray);
-    }, 5 * i);
+  startTime = Date.now();
+
+  interval = setInterval(function () {
+    arrayCopy.forEach(function (i) {
+        setTimeout(function () {
+            outputArray.push(i);
+            drawArray(outputArray);
+        }, 5 * i);
+    });
+
+    clearInterval(interval);
+
+    $("#timer").html(
+      "&#128337; Completed in " + (Date.now() - startTime) + "ms."
+    );
   });
 });
 
 $("#bubble-sort").on("click", function () {
     var arrayCopy = [...originalArray];
     var outputArray = [];
-    var done = false;
 
-    while (!done) {
-        //if (arrayCopy.length <= 1) { return }
-        done = true;
+    startTime = Date.now();
 
-        for (var i = 1; i < arrayCopy.length; i++) {
-            if (arrayCopy[i - 1] > arrayCopy[i]) {
-                done = false;
-                var tmp = arrayCopy[i - 1];
-                arrayCopy[i - 1] = arrayCopy[i];
-                arrayCopy[i] = tmp;
+    interval = setInterval(function () {
+        var done = false;
+
+        while (!done) {
+            //if (arrayCopy.length <= 1) { return }
+            done = true;
+
+            for (var i = 1; i < arrayCopy.length; i++) {
+                if (arrayCopy[i - 1] > arrayCopy[i]) {
+                    done = false;
+                    var tmp = arrayCopy[i - 1];
+                    arrayCopy[i - 1] = arrayCopy[i];
+                    arrayCopy[i] = tmp;
+                }
             }
         }
-    }
+
+        clearInterval(interval);
+
+        $("#timer").html(
+          "&#128337; Completed in " + (Date.now() - startTime) + "ms."
+        );
+    });
 
     arrayCopy.forEach(function (i) {
         outputArray.push(i);
@@ -94,11 +119,20 @@ $("#merge-sort").on("click", function() {
         merge(left, right, arr);
     }
 
-    mergeSort(arrayCopy);
+    startTime = Date.now();
 
-    arrayCopy.forEach(function (i) {
-      outputArray.push(i);
-      drawArray(outputArray);
+    interval = setInterval(function () {
+        mergeSort(arrayCopy);
+        clearInterval(interval);
+
+        arrayCopy.forEach(function (i) {
+            outputArray.push(i);
+            drawArray(outputArray);
+        });
+
+        $("#timer").html(
+          "&#128337; Completed in " + (Date.now() - startTime) + "ms."
+        );
     });
 });
 
@@ -106,19 +140,29 @@ $("#insertion-sort").on("click", function() {
     var arrayCopy = [...originalArray];
     var outputArray = [];
 
-    for (var i = 0; i < arrayCopy.length; i++) {
+    startTime = Date.now();
+
+    interval = setInterval(function () {
+      for (var i = 0; i < arrayCopy.length; i++) {
         var k = arrayCopy[i];
 
         for (var j = i; j > 0 && k < arrayCopy[j - 1]; j--) {
-            arrayCopy[j] = arrayCopy[j - 1];
+          arrayCopy[j] = arrayCopy[j - 1];
         }
 
         arrayCopy[j] = k;
-    }
+      }
 
-    arrayCopy.forEach(function (i) {
+      clearInterval(interval);
+
+      arrayCopy.forEach(function (i) {
         outputArray.push(i);
         drawArray(outputArray);
+      });
+
+      $("#timer").html(
+        "&#128337; Completed in " + (Date.now() - startTime) + "ms."
+      );
     });
 });
 
