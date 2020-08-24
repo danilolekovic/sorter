@@ -1,5 +1,5 @@
 <div align="center">
-<h1>Sorter</h1>
+<img src="https://i.imgur.com/wXtFjOo.png" height=60>
 <p>a visual display of various sorting algorithms in JS</p>
 </div>
 
