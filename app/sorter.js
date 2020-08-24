@@ -75,11 +75,8 @@ $("#bubble-sort").on("click", function () {
         $("#timer").html(
           "&#128337; Completed in " + (Date.now() - startTime) + "ms."
         );
-    });
 
-    arrayCopy.forEach(function (i) {
-        outputArray.push(i);
-        drawArray(outputArray);
+        drawArray(arrayCopy);
     });
 });
 
